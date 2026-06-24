@@ -1,36 +1,46 @@
 # PharmaSC Intelligence Hub
 
-A multi-agent AI supply chain intelligence system built using AWS Bedrock, Claude, Lambda, Athena, and S3.
+A multi-agent AI supply chain intelligence prototype built using AWS Bedrock, Claude, AWS Lambda, Amazon Athena, and Amazon S3.
 
 ## Overview
 
-PharmaSC Intelligence Hub is a cloud-based Generative AI prototype designed to help pharmaceutical supply chain teams identify demand, inventory, and supplier risks faster.
+PharmaSC Intelligence Hub demonstrates how generative AI can support pharmaceutical supply chain planning by identifying inventory, backorder, supplier, logistics, and quality risks.
 
-The system uses Amazon Bedrock with Claude models to analyze structured supply chain data from Amazon S3 and Amazon Athena, then generates practical business recommendations through multiple specialized AI agents.
+The project uses sample supply chain datasets, Athena-style SQL queries, Python prototype agents, prompt templates, and a Lambda orchestrator for Amazon Bedrock.
 
 ## Business Problem
 
-Pharmaceutical supply chains are highly sensitive to demand volatility, inventory shortages, supplier delays, and service-level risk.
+Supply chain planners often need to review multiple reports and datasets before making decisions.
 
-Traditional reporting tools can show what happened, but they do not always explain why it matters or what action should be taken.
+Common challenges include:
 
-This project demonstrates how Generative AI can support supply chain planners by summarizing key risks and recommending next-best actions.
+- Low inventory coverage
+- Backorder risk
+- Supplier delays
+- Failed inspections
+- High defect rates
+- Long replenishment lead times
+- High logistics costs
+- Manual prioritization of urgent planning actions
+
+This project shows how GenAI can help convert structured supply chain data into clear summaries and recommended actions.
 
 ## Key Features
 
-- Demand risk summarization
-- Inventory shortage detection
-- Supplier risk analysis
-- AI-generated recommendations
-- Athena-based querying over S3 data
-- Lambda-based orchestration
-- Amazon Bedrock Claude model integration
-- Modular multi-agent design
+- Inventory and backorder risk detection
+- Supplier and logistics risk analysis
+- Quality risk identification
+- Athena SQL queries for supply chain risk signals
+- Python prototype agents for rule-based risk classification
+- Prompt templates for Amazon Bedrock
+- AWS Lambda orchestrator for Claude model invocation
+- Business-friendly recommendation generation
+- Recruiter-friendly documentation and walkthrough
 
 ## AWS Services Used
 
 - Amazon Bedrock
-- Anthropic Claude Haiku / Claude Sonnet
+- Anthropic Claude
 - AWS Lambda
 - Amazon S3
 - Amazon Athena
@@ -40,75 +50,161 @@ This project demonstrates how Generative AI can support supply chain planners by
 ## High-Level Architecture
 
 ```text
-Sample Supply Chain Data
-        ↓
-Amazon S3 Data Lake
-        ↓
+Sample CSV Data
+      ↓
+Amazon S3
+      ↓
 Amazon Athena Queries
-        ↓
+      ↓
+Python Risk Agents
+      ↓
 AWS Lambda Orchestrator
-        ↓
-Amazon Bedrock Claude Model
-        ↓
-Specialized AI Agents
-        ↓
-Risk Summary + Recommended Actions
+      ↓
+Amazon Bedrock Claude
+      ↓
+AI Risk Summary + Recommended Actions
+```
+
+## Repository Structure
+
+```text
+pharmasc-intelligence-hub/
+│
+├── README.md
+├── LICENSE
+├── .gitignore
+│
+├── sample_data/
+│   ├── inventory_backorder_sample.csv
+│   ├── supplier_network_sample.csv
+│   └── data_dictionary.md
+│
+├── athena/
+│   ├── create_tables.sql
+│   └── sample_queries.sql
+│
+├── prompts/
+│   ├── inventory_agent_prompt.md
+│   ├── supplier_risk_prompt.md
+│   └── recommendation_agent_prompt.md
+│
+├── agents/
+│   ├── inventory_agent.py
+│   ├── supplier_risk_agent.py
+│   └── recommendation_agent.py
+│
+├── lambda/
+│   ├── bedrock_orchestrator.py
+│   └── requirements.txt
+│
+├── architecture/
+│   ├── README.md
+│   └── system_design.md
+│
+└── docs/
+    ├── use_case.md
+    └── demo_walkthrough.md
 ```
 
 ## Multi-Agent Design
 
-The solution is organized into specialized agents:
+The prototype uses three specialized agents.
 
-### 1. Demand Agent
+### 1. Inventory Agent
 
-Analyzes forecast accuracy, demand spikes, and abnormal demand variance.
+Analyzes SKU-level inventory and backorder signals such as:
 
-### 2. Inventory Agent
+- National inventory
+- Days of supply
+- Local backorder quantity
+- Forecast demand
+- Historical sales
+- Supplier/service performance
+- Past-due supply
 
-Reviews inventory levels, weeks of supply, reorder points, and stockout risk.
+### 2. Supplier Risk Agent
 
-### 3. Supplier Risk Agent
+Analyzes supplier, logistics, manufacturing, and quality signals such as:
 
-Evaluates supplier delays, lead-time risk, and supply continuity concerns.
+- Supplier lead time
+- Manufacturing lead time
+- Inspection result
+- Defect rate
+- Shipping time
+- Transportation route
+- Logistics cost
 
-### 4. Recommendation Agent
+### 3. Recommendation Agent
 
-Combines the findings from all agents and generates prioritized business actions.
+Combines inventory and supplier findings into prioritized planner actions, leadership escalations, and recommended next steps.
 
-## Example Output
+## Example AI Output
 
 ```json
 {
-  "risk_level": "High",
-  "affected_sku": "SKU-102",
-  "summary": "Projected demand is above available inventory within the next 3 weeks.",
-  "root_cause": "Forecast increase combined with delayed supplier replenishment.",
-  "recommended_action": "Expedite supplier purchase order and review allocation strategy for high-priority customers."
+  "overall_risk_level": "High",
+  "executive_summary": "Several SKUs show elevated risk due to low inventory coverage, backorder exposure, and supplier quality issues.",
+  "prioritized_actions": [
+    {
+      "priority": "High",
+      "sku": "1591447",
+      "issue": "SKU has zero days of supply and has gone on backorder.",
+      "recommended_action": "Validate open replenishment orders and escalate potential service impact.",
+      "owner": "Planner",
+      "timeframe": "Immediate"
+    }
+  ]
 }
 ```
+
+## How the Demo Works
+
+1. Sample supply chain CSV files are stored in the `sample_data/` folder.
+2. Athena SQL scripts define tables and identify risk signals.
+3. Python agents classify inventory and supplier risks.
+4. Prompt templates guide Bedrock responses.
+5. AWS Lambda builds the prompt and invokes Claude through Amazon Bedrock.
+6. The system returns an executive summary and prioritized actions.
+
+## Project Documentation
+
+- `docs/use_case.md`
+- `docs/demo_walkthrough.md`
+- `architecture/system_design.md`
+- `sample_data/data_dictionary.md`
+- `athena/sample_queries.sql`
 
 ## Skills Demonstrated
 
 - Generative AI solution design
 - AWS Bedrock integration
 - Prompt engineering
-- Serverless architecture
-- Supply chain analytics
-- Data lake querying with Athena
+- Multi-agent architecture
+- Serverless development with AWS Lambda
+- Athena SQL querying
+- S3 data lake design
 - Python development
-- Cloud documentation
-- Multi-agent AI system design
+- Supply chain analytics
+- Cloud architecture documentation
+- Portfolio project documentation
 
 ## Project Status
 
-Prototype / portfolio project.
+This is a portfolio prototype project.
+
+The project is designed to demonstrate architecture, business logic, AWS service knowledge, and GenAI workflow design.
 
 ## Future Enhancements
 
-- Add Streamlit dashboard
-- Add API Gateway endpoint
-- Add Terraform or CloudFormation deployment
-- Add automated data ingestion
-- Add vector database integration
-- Add CI/CD pipeline
-- Add unit tests
+Potential future enhancements include:
+
+- Streamlit or React dashboard
+- API Gateway endpoint
+- Terraform or CloudFormation infrastructure
+- CI/CD pipeline
+- AWS Glue Data Catalog integration
+- Automated S3 ingestion
+- Bedrock Guardrails
+- Unit tests for Python agents
+- Model evaluation framework
+- Architecture diagram image
