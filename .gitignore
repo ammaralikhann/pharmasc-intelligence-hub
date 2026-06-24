@@ -1,0 +1,36 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.env
+.venv/
+venv/
+ local configENV/
+.aws/
+aws_credentials.json
+credentials
+config
+
+# Local data exports
+*.xlsx
+*.xls
+*.parquet
+
+# Temporary files
+tmp/
+temp/
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
