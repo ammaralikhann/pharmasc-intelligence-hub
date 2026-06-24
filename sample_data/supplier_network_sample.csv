@@ -1,0 +1,11 @@
+product_type,sku,price,availability,number_of_products_sold,revenue_generated,stock_levels,lead_times,order_quantities,shipping_times,shipping_carriers,shipping_costs,supplier_name,location,lead_time,production_volumes,manufacturing_lead_time,manufacturing_costs,inspection_results,defect_rates,transportation_modes,routes,costs
+haircare,SKU0,69.81,55,802,8662.00,58,7,96,4,Carrier B,2.96,Supplier 3,Mumbai,29,215,29,46.28,Pending,0.23,Road,Route B,187.75
+skincare,SKU1,14.84,95,736,7460.90,53,30,37,2,Carrier A,9.72,Supplier 3,Mumbai,23,517,30,33.62,Pending,4.85,Road,Route B,503.07
+haircare,SKU2,11.32,34,8,9577.75,1,10,88,2,Carrier B,8.05,Supplier 1,Mumbai,12,971,27,30.69,Pending,4.58,Air,Route C,141.92
+skincare,SKU3,61.16,68,83,7766.84,23,13,59,6,Carrier C,1.73,Supplier 5,Kolkata,24,937,18,35.62,Fail,4.75,Rail,Route A,254.78
+skincare,SKU4,4.81,26,871,2686.51,5,3,56,8,Carrier A,3.89,Supplier 1,Delhi,5,414,3,92.07,Fail,3.15,Air,Route A,923.44
+haircare,SKU5,1.70,87,147,2828.35,90,27,66,3,Carrier B,4.44,Supplier 4,Bangalore,10,104,17,56.77,Fail,2.78,Road,Route A,235.46
+skincare,SKU6,4.08,48,65,7823.48,11,15,58,8,Carrier C,3.88,Supplier 3,Kolkata,14,314,24,1.09,Pending,1.00,Sea,Route A,134.37
+cosmetics,SKU7,42.96,59,426,8496.10,93,17,11,1,Carrier B,2.35,Supplier 4,Bangalore,22,564,1,99.47,Fail,0.40,Road,Route C,802.06
+cosmetics,SKU8,68.72,78,150,7517.36,5,10,15,7,Carrier C,3.40,Supplier 4,Mumbai,13,769,8,11.42,Pending,2.71,Sea,Route B,505.56
+skincare,SKU9,64.02,35,980,4971.15,14,27,83,1,Carrier A,7.17,Supplier 2,Chennai,29,963,23,47.96,Pending,3.84,Rail,Route B,995.93
